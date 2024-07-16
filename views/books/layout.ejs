@@ -40,7 +40,7 @@
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-success">
   <!-- Navbar Brand-->
   <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
   <!-- Sidebar Toggle-->
@@ -76,25 +76,15 @@
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
             Dashboard
           </a>
-          <div class="sb-sidenav-menu-heading">Interface</div>
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-            Layouts
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-          </a>
-          <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav">
-              <a class="nav-link" href="layout-static.html">Static Navigation</a>
-              <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-            </nav>
-          </div>
+
+
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
             Pages
             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
           </a>
 
-          <a href="/books/" class="nav-link">Add Project</a>
+          <a href="/books/add" class="nav-link">Add Project</a>
 
 
           <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
@@ -105,8 +95,8 @@
               </a>
               <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="register.html">Register</a>
-                  <a class="nav-link" href="password.html">Forgot Password</a>
+                  <a class="nav-link" href="/auth/register">Register</a>
+                  <a class="nav-link" href="/auth/login">Forgot Password</a>
                 </nav>
               </div>
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -139,6 +129,7 @@
       </div>
     </nav>
   </div>
+
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
@@ -174,35 +165,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-md-6">
-            <div class="card bg-danger text-white mb-4">
-              <div class="card-body">Danger Card</div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-chart-area me-1"></i>
-                Area Chart Example
-              </div>
-              <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Bar Chart Example
-              </div>
-              <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-            </div>
-          </div>
+
 
         </div>
         <div class="card mb-4">
@@ -212,6 +175,42 @@
           </div>
           <div class="card-body">
                  </div>
+
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if (projects && projects.length) { %>
+                  <% projects.forEach(function(project) { %>
+                    <tr>
+                      <td><%= project.id %></td>
+                      <td><%= project.name %></td>
+                      <td><%= project.description %></td>
+                      <td>
+                        <a href="/books/details/<%= project.id %>" class="btn btn-info"><i class="fas fa-info-circle"></i> View Details</a>
+                        <!-- Add Edit and Delete buttons as needed -->
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="4" class="text-center">No projects found.</td>
+                  </tr>
+                <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </main>

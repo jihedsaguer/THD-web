@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Project = require('../models/project'); // Check the correct path to your Project model
+const Project = require('../models/project');
+const Image = require('../models/image'); // Ensure correct path
 const multer = require('multer');
 const path = require('path');
 const { Op } = require('sequelize');
@@ -16,12 +17,16 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-
 // Display all projects
+
+// Example route to render projects using layout.ejs
+
 router.get('/', async (req, res, next) => {
     try {
-        const projects = await Project.findAll({ order: [['id', 'DESC']] });
+        const projects = await Project.findAll({
+            order: [['id', 'DESC']],
+            include: Image
+        });
         res.render('books/index', { projects, messages: req.flash() });
     } catch (err) {
         console.error("Error fetching projects:", err);
@@ -30,29 +35,29 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/layout', async (req, res, next) => {
+    try {
+        const projects = await Project.findAll({
+            order: [['id', 'DESC']],
+            include: Image
+        });
+        res.render('books/layout', { projects, messages: req.flash() });
+    } catch (err) {
+        console.error("Error fetching projects:", err);
+        req.flash('error', 'Failed to fetch projects');
+        res.render('books/layout', { projects: [], messages: req.flash() });
+    }
+});
+
 // Display project details
 router.get('/details/:id', async (req, res, next) => {
     const id = req.params.id;
     try {
-        const project = await Project.findByPk(id);
+        const project = await Project.findByPk(id, { include: Image });
         if (!project) {
             req.flash('error', 'Project not found');
             return res.redirect('/books');
         }
-
-        // Debugging logs
-        console.log("Project images before parsing:", project.images);
-
-        // Parse `project.images` if it exists and is a JSON string
-        if (project.images) {
-            project.images = JSON.parse(project.images);
-        } else {
-            project.images = [];
-        }
-
-        // Debugging logs
-        console.log("Project images after parsing:", project.images);
-
         res.render('books/details', {
             title: 'Project Details',
             project: project,
@@ -87,15 +92,16 @@ router.post('/add', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imag
     }
 
     try {
-        const newProject = await Project.create({
-            name,
-            description,
-            image_url,
-            images: JSON.stringify(images) // Store images as a JSON string
-        });
+        const newProject = await Project.create({ name, description, image_url });
+
+        // Save additional images to the Image table
+        if (images.length > 0) {
+            const imageRecords = images.map(url => ({ projectId: newProject.id, url }));
+            await Image.bulkCreate(imageRecords);
+        }
 
         req.flash('success', 'Project successfully added');
-        res.redirect('/books');
+        res.redirect('/books/index'); // layout if u want to be redirected to admin dashboard //
     } catch (err) {
         console.error("Error adding project:", err);
         req.flash('error', err.message);
@@ -107,7 +113,7 @@ router.post('/add', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imag
 router.get('/edit/:id', async (req, res, next) => {
     const id = req.params.id;
     try {
-        const project = await Project.findByPk(id);
+        const project = await Project.findByPk(id, { include: Image });
         if (!project) {
             req.flash('error', 'Project not found');
             return res.redirect('/books');
@@ -118,7 +124,7 @@ router.get('/edit/:id', async (req, res, next) => {
             name: project.name,
             description: project.description,
             image_url: project.image_url,
-            images: project.images ? JSON.parse(project.images) : [],
+            images: project.Images.map(image => image.url),
             messages: req.flash()
         });
     } catch (err) {
@@ -133,7 +139,6 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
     const id = req.params.id;
     const { name, description } = req.body;
     let image_url = req.body.existing_image_url; // Assuming existing image URL is sent via form
-    let images = JSON.parse(req.body.existing_images || '[]');
 
     // Handle single image upload
     if (req.files['image']) {
@@ -141,9 +146,7 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
     }
 
     // Handle multiple image upload
-    if (req.files['images']) {
-        images = images.concat(req.files['images'].map(file => '/images/' + file.filename));
-    }
+    const newImages = req.files['images'] ? req.files['images'].map(file => '/images/' + file.filename) : [];
 
     try {
         const project = await Project.findByPk(id);
@@ -152,7 +155,13 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
             return res.redirect('/books');
         }
 
-        await project.update({ name, description, image_url, images: JSON.stringify(images) });
+        await project.update({ name, description, image_url });
+
+        // Add new images to the Image table
+        if (newImages.length > 0) {
+            const imageRecords = newImages.map(url => ({ projectId: project.id, url }));
+            await Image.bulkCreate(imageRecords);
+        }
 
         req.flash('success', 'Project successfully updated');
         res.redirect('/books');
@@ -191,7 +200,8 @@ router.get('/search', async (req, res) => {
                 name: {
                     [Op.like]: `%${query}%`
                 }
-            }
+            },
+            include: Image
         });
         res.render('books/index', { projects });
     } catch (error) {
@@ -199,11 +209,8 @@ router.get('/search', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
-
 // Add this route to render the layout.ejs template
 router.get('/layout', (req, res) => {
     res.render('books/layout');
 });
-
 module.exports = router;

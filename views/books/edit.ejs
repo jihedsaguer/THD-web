@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Edit Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .img-thumbnail {
+            max-width: 150px;
+            margin: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .img-thumbnail:hover {
+            transform: scale(1.1);
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+        .gallery-item {
+            position: relative;
+            margin: 10px;
+        }
+        .gallery-item .removeImageBtn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            border: none;
+            color: white;
+            padding: 2px 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 <body class="container" style="margin-top: 50px;">
 
@@ -29,9 +59,9 @@
             <div class="form-group">
                 <label>Current Image:</label>
                 <% if (image_url) { %>
-                    <div class="mb-3">
+                    <div class="gallery-item">
                         <img class="img-thumbnail" src="<%= image_url %>" alt="<%= name %>">
-                        <button type="button" class="btn btn-sm btn-danger mt-2" id="removeImageBtn">Remove Image</button>
+                        <button type="button" class="btn btn-sm btn-danger removeImageBtn" id="removeMainImageBtn">Remove</button>
                     </div>
                 <% } else { %>
                     <p>No image uploaded</p>
@@ -41,7 +71,20 @@
                 <label>New Image:</label>
                 <input type="file" class="form-control-file" name="image" accept="image/*">
             </div>
+            <div class="form-group">
+                <label>Additional Images:</label>
+                <div id="additionalImages" class="gallery">
+                    <% images.forEach(function(image, index) { %>
+                        <div class="gallery-item">
+                            <img class="img-thumbnail" src="<%= image %>" alt="Additional Image <%= index + 1 %>">
+                            <button type="button" class="btn btn-sm btn-danger removeImageBtn">Remove</button>
+                        </div>
+                    <% }) %>
+                </div>
+                <input type="file" class="form-control-file" name="images" accept="image/*" multiple>
+            </div>
             <input type="hidden" name="existing_image_url" value="<%= image_url %>">
+            <input type="hidden" name="existing_images" value='<%= JSON.stringify(images) %>'>
             <div class="form-group">
                 <input type="submit" class="btn btn-info" value="Update"/>
             </div>
@@ -52,14 +95,28 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#removeImageBtn').click(function() {
-            // Confirm action with user if needed
+        $('#removeMainImageBtn').click(function() {
             if (confirm('Are you sure you want to remove this image?')) {
-                // Perform action to remove image or clear existing image URL field
-                $('.img-thumbnail').remove(); // Remove the image element
-                $('[name="existing_image_url"]').val(''); // Clear the existing image URL field
+                $('.gallery-item img').remove();
+                $('[name="existing_image_url"]').val('');
+                $(this).remove();
             }
         });
+
+        $('.removeImageBtn').click(function() {
+            if (confirm('Are you sure you want to remove this image?')) {
+                $(this).closest('.gallery-item').remove();
+                updateExistingImagesField();
+            }
+        });
+
+        function updateExistingImagesField() {
+            let remainingImages = [];
+            $('#additionalImages .img-thumbnail').each(function() {
+                remainingImages.push($(this).attr('src'));
+            });
+            $('[name="existing_images"]').val(JSON.stringify(remainingImages));
+        }
     });
 </script>
 

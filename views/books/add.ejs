@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Project Form</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .custom-file-input {
+            color: transparent;
+        }
+        .custom-file-input::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        .custom-file-input::before {
+            content: 'Select Image';
+            color: #fff;
+            display: inline-block;
+            background: linear-gradient(to right, #6dd570, #63c176);
+            border: 1px solid #6dd570;
+            border-radius: 5px;
+            padding: 8px 12px;
+            outline: none;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .custom-file-input:hover::before {
+            background: linear-gradient(to right, #63c176, #6dd570);
+        }
+        .custom-file-input:active::before {
+            background: linear-gradient(to right, #63c176, #6dd570);
+        }
+        .custom-file-input:disabled::before {
+            background: #e9ecef;
+            border-color: #adb5bd;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body class="bg-light container py-5">
+<h1 class="mb-4">Add Project</h1>
 
-<div class="container my-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="/books/add" method="post" enctype="multipart/form-data" class="p-4 rounded bg-white shadow-sm">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" id="name" name="name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description:</label>
-                    <textarea id="description" name="description" class="form-control"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="file" id="image" name="image" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="images" class="form-label">Additional Images:</label>
-                    <input type="file" id="images" accept="image/*" name="images" class="form-control" multiple>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Project</button>
-            </form>
+<% if (messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+<% } %>
+
+<form action="/books/add" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Main Image:</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image" name="image">
+            <label class="custom-file-label" for="image">Choose file</label>
         </div>
     </div>
-</div>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="form-group">
+        <label for="images">Additional Images:</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="images" name="images" multiple>
+            <label class="custom-file-label" for="images">Choose files</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Project</button>
+</form>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

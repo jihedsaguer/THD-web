@@ -15,9 +15,18 @@
             object-fit: cover;
             margin: 0 auto; /* Center the image horizontally */
         }
+        .additional-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
         .additional-images img {
-            max-width: 100px;
+            max-width: 150px;
             margin: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .additional-images img:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -38,11 +47,17 @@
         <!-- Main Image -->
         <% if (project.image_url) { %>
             <img class="card-img-top main-image" src="<%= project.image_url %>" alt="<%= project.name %>">
-          <%  %>
         <% } %>
+
         <!-- Additional Images -->
-
-
+        <div class="additional-images mt-3">
+            <% if (project.Images && project.Images.length > 0) { %>
+                <h5>Additional Images:</h5>
+                <% project.Images.forEach(image => { %>
+                    <img src="<%= image.url %>" alt="Additional Image">
+                <% }) %>
+            <% } %>
+        </div>
 
         <!-- Edit and Delete Buttons -->
         <div class="card-footer mt-3">
