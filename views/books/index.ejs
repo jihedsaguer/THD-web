@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 20px;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .card-body {
+            padding: 1.25rem;
+        }
+        .main-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+        .btn-action {
+            margin-bottom: 10px;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .btn-action i {
+            margin-right: 10px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="container">
+<div class="row justify-content-between mb-3">
+    <div class="col-md-auto">
+        <a href="/auth/logout" class="btn btn-danger btn-action"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+    <div class="col-md-auto">
+        <a href="/books/layout/" class="btn btn-primary btn-action"><i class="fas fa-home"></i> Back Home</a>
+    </div>
+    <div class="col-md-auto">
+        <a href="/books/add/" class="btn btn-success btn-action"><i class="fas fa-plus"></i> Add Project</a>
+    </div>
+</div>
+
+<% if (messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+<% } %>
+
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search projects...">
+</div>
+
+<div class="row" id="projectContainer">
+    <% projects.forEach(function(project) { %>
+        <div class="col-md-4">
+            <div class="card">
+                <% if (project.image_url) { %>
+                    <img class="card-img-top main-image" src="<%= project.image_url %>" alt="<%= project.name %>">
+                <% } %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= project.name %></h5>
+                    <p class="card-text"><%= project.description %></p>
+                    <a href="/books/details/<%= project.id %>" class="btn btn-block"><i class="fas fa-info-circle"></i> View Details</a>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+        const projectContainer = document.getElementById('projectContainer');
+
+        searchInput.addEventListener('input', function (e) {
+            const searchString = e.target.value.toLowerCase();
+
+            Array.from(projectContainer.getElementsByClassName('card')).forEach(function (card) {
+                const projectName = card.querySelector('.card-title').textContent.toLowerCase();
+                const cardBody = card.querySelector('.card-body');
+
+                if (projectName.includes(searchString)) {
+                    card.style.display = 'block';
+                    cardBody.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            margin-top: 50px;
+        }
+        .main-image {
+            max-width: 400px;
+            width: 100%;
+            object-fit: cover;
+            margin: 0 auto; /* Center the image horizontally */
+        }
+        .additional-images img {
+            max-width: 100px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body class="container">
+
+<% if (messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
+<% } %>
+
+<div class="card">
+    <div class="card-header">
+        Project Details
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><%= project.name %></h5>
+        <p class="card-text"><%= project.description %></p>
+
+        <!-- Main Image -->
+        <% if (project.image_url) { %>
+            <img class="card-img-top main-image" src="<%= project.image_url %>" alt="<%= project.name %>">
+          <%  %>
+        <% } %>
+        <!-- Additional Images -->
+
+
+
+        <!-- Edit and Delete Buttons -->
+        <div class="card-footer mt-3">
+            <a href="/books/edit/<%= project.id %>" class="btn btn-primary mr-2">Edit</a>
+            <a href="/books/delete/<%= project.id %>" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
