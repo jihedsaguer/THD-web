@@ -101,7 +101,7 @@ router.post('/add', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imag
         }
 
         req.flash('success', 'Project successfully added');
-        res.redirect('/books/index'); // layout if u want to be redirected to admin dashboard //
+        res.redirect('/books/layout'); // layout if u want to be redirected to admin dashboard //
     } catch (err) {
         console.error("Error adding project:", err);
         req.flash('error', err.message);
@@ -164,7 +164,7 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
         }
 
         req.flash('success', 'Project successfully updated');
-        res.redirect('/books');
+        res.redirect('/books/layout');
     } catch (err) {
         console.error("Error updating project:", err);
         req.flash('error', err.message);
@@ -183,11 +183,11 @@ router.get('/delete/:id', async (req, res, next) => {
         }
         await project.destroy();
         req.flash('success', 'Project successfully deleted');
-        res.redirect('/books');
+        res.redirect('/books/layout');
     } catch (err) {
         console.error("Error deleting project:", err);
         req.flash('error', err.message);
-        res.redirect('/books');
+        res.redirect('/books/layout');
     }
 });
 
@@ -203,7 +203,7 @@ router.get('/search', async (req, res) => {
             },
             include: Image
         });
-        res.render('books/index', { projects });
+        res.render('books/layout', { projects });
     } catch (error) {
         console.error('Error searching for projects:', error);
         res.status(500).send('Internal Server Error');

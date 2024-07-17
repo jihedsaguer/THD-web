@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -81,7 +81,7 @@
 <div class="row" id="projectContainer">
     <% projects.forEach(function(project) { %>
         <div class="col-md-4">
-            <div class="card">
+            <div class="card" id="projectCard<%= project.id %>">
                 <% if (project.image_url) { %>
                     <img class="card-img-top main-image" src="<%= project.image_url %>" alt="<%= project.name %>">
                 <% } %>
@@ -99,20 +99,19 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
-        const projectContainer = document.getElementById('projectContainer');
+        const projectCards = document.querySelectorAll('.card');
 
         searchInput.addEventListener('input', function (e) {
             const searchString = e.target.value.toLowerCase();
 
-            Array.from(projectContainer.getElementsByClassName('card')).forEach(function (card) {
+            projectCards.forEach(function (card) {
                 const projectName = card.querySelector('.card-title').textContent.toLowerCase();
                 const cardBody = card.querySelector('.card-body');
 
                 if (projectName.includes(searchString)) {
-                    card.style.display = 'block';
-                    cardBody.style.display = 'block';
+                    card.style.display = 'block'; // Show matching card
                 } else {
-                    card.style.display = 'none';
+                    card.style.display = 'none'; // Hide non-matching card
                 }
             });
         });

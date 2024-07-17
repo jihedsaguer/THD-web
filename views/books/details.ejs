@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,25 +8,76 @@
     <style>
         body {
             margin-top: 50px;
+            background-color: #f8f9fa; /* Light background color */
+            font-family: Arial, sans-serif; /* Font style */
         }
         .main-image {
-            max-width: 400px;
-            width: 100%;
-            object-fit: cover;
-            margin: 0 auto; /* Center the image horizontally */
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Fit within container */
+            border: 1px solid #dee2e6; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            transition: transform 0.2s ease-in-out; /* Smooth hover transition */
+        }
+        .main-image:hover {
+            transform: scale(1.05); /* Zoom effect on hover */
         }
         .additional-images {
             display: flex;
             flex-wrap: wrap;
             justify-content: start;
+            margin-top: 15px; /* Space between images and main content */
         }
         .additional-images img {
-            max-width: 150px;
+            max-width: 120px;
+            height: auto; /* Maintain aspect ratio */
             margin: 5px;
-            transition: transform 0.2s ease-in-out;
+            border: 1px solid #dee2e6; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            transition: transform 0.2s ease-in-out; /* Smooth hover transition */
+            cursor: pointer; /* Pointer cursor */
         }
         .additional-images img:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff; /* Blue background */
+            border-color: #007bff; /* Blue border */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #0056b3; /* Darker blue border on hover */
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            margin-bottom: 20px; /* Space between cards */
+        }
+        .card-header {
+            background-color: #6dd570; /* Light green header */
+            color: #fff; /* White text */
+            border-bottom: none; /* Remove default border */
+            border-top-left-radius: 5px; /* Rounded corners */
+            border-top-right-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding */
+        }
+        .card-body {
+            padding: 20px; /* Padding */
+        }
+        .card-footer {
+            background-color: #f8f9fa; /* Light background */
+            border-top: 1px solid #dee2e6; /* Light border */
+            padding: 10px 20px; /* Padding */
+        }
+        .card-title {
+            font-size: 24px; /* Larger font size */
+            margin-bottom: 10px; /* Space below title */
+        }
+        .card-text {
+            font-size: 16px; /* Normal font size */
+            line-height: 1.6; /* Line height for readability */
+            margin-bottom: 20px; /* Space below text */
         }
     </style>
 </head>
@@ -36,36 +87,73 @@
     <div class="alert alert-danger" role="alert"><%- messages.error %></div>
 <% } %>
 
+
+<a class="navbar-brand" href="#">
+    <img src="/images/1721125082933.jpeg" alt="Logo">
+</a>
 <div class="card">
     <div class="card-header">
-        Project Details
+        <h3 class="mb-0"><%= project.name %></h3>
+        <p class="mb-0"><small><%= project.description %></small></p>
     </div>
     <div class="card-body">
-        <h5 class="card-title"><%= project.name %></h5>
-        <p class="card-text"><%= project.description %></p>
-
-        <!-- Main Image -->
-        <% if (project.image_url) { %>
-            <img class="card-img-top main-image" src="<%= project.image_url %>" alt="<%= project.name %>">
-        <% } %>
-
-        <!-- Additional Images -->
-        <div class="additional-images mt-3">
-            <% if (project.Images && project.Images.length > 0) { %>
-                <h5>Additional Images:</h5>
-                <% project.Images.forEach(image => { %>
-                    <img src="<%= image.url %>" alt="Additional Image">
-                <% }) %>
-            <% } %>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <!-- Main Image -->
+                <% if (project.image_url) { %>
+                    <img class="main-image mb-3" src="<%= project.image_url %>" alt="<%= project.name %>">
+                <% } %>
+            </div>
+            <div class="col-md-6">
+                <!-- Project Information -->
+                <h5 class="card-title">Project Details</h5>
+                <p class="card-text">Name: <%= project.name %></p>
+                <p class="card-text">Description: <%= project.description %></p>
+            </div>
         </div>
 
-        <!-- Edit and Delete Buttons -->
-        <div class="card-footer mt-3">
-            <a href="/books/edit/<%= project.id %>" class="btn btn-primary mr-2">Edit</a>
-            <a href="/books/delete/<%= project.id %>" class="btn btn-danger">Delete</a>
+        <!-- Additional Images -->
+        <% if (project.Images && project.Images.length > 0) { %>
+            <div class="additional-images mt-4">
+                <h5>Additional Images:</h5>
+                <div class="row">
+                    <% project.Images.forEach(image => { %>
+                        <div class="col-md-3 mb-3">
+                            <img src="<%= image.url %>" alt="Additional Image" class="additional-image img-fluid rounded" data-toggle="modal" data-target="#imageModal">
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <div class="card-footer">
+        <a href="/books/edit/<%= project.id %>" class="btn btn-primary mr-2">Edit</a>
+        <a href="/books/delete/<%= project.id %>" class="btn btn-secondary">Delete</a>
+    </div>
+</div>
+
+<!-- Modal for Additional Images -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img src="" id="modalImage" class="img-fluid">
+            </div>
         </div>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.additional-image').click(function() {
+            var imageUrl = $(this).attr('src');
+            $('#modalImage').attr('src', imageUrl);
+            $('#imageModal').modal('show');
+        });
+    });
+</script>
 </body>
 </html>
