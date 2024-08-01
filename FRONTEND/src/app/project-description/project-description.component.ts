@@ -55,4 +55,8 @@ export class ProjectDescriptionComponent implements OnInit {
     return `http://localhost:3000${imageName}`;
   }
 
+
+  toggleNav() {
+    this.navVisible = !this.navVisible;
+  }
 }

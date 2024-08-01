@@ -204,6 +204,12 @@
                         <div class="card-body">
                           <h5 class="card-title"><%= project.name %></h5>
                           <p class="card-text"><%= project.description %></p>
+                          <!-- Progress Bar -->
+                          <div class="progress my-3">
+                            <div class="progress-bar" role="progressbar" style="width: <%= project.progress %>%;" aria-valuenow="<%= project.progress %>" aria-valuemin="0" aria-valuemax="100">
+                              <%= project.progress %>%
+                            </div>
+                          </div>
                           <a href="/books/details/<%= project.id %>" id="views" class="btn btn-info btn-block"><i class="fas fa-info-circle"></i> View Details</a>
                         </div>
                       </div>
@@ -218,6 +224,7 @@
                     </div>
                   </div>
                 </div>
+
               <% }) %>
             </div>
           </div>

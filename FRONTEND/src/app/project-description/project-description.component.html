@@ -1,39 +1,74 @@
-<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+<div>
+  <!-- Navigation Bar -->
+  <nav class="firstNav">
+    <ul class="firstnavul">
+      <li class="contact firstnavli">contact</li>
+      <li class="facebook firstnavli">Fb.</li>
+      <li class="linkedin firstnavli">Ln.</li>
+      <li class="twitter firstnavli">Tw.</li>
+      <li class="behance firstnavli">Be.</li>
+      <li class="menu firstnavli">menu</li>
+    </ul>
+
+    <div class="menu-icon">
+      <div class="nav-container">
+        <img src="assets/images/Fichier 4.svg" alt="" class="logo svg" (click)="toggleNav()">
+        <nav [class.show-nav]="navVisible" class="my-nav">
+          <ul class="my-nav-list">
+            <li class="my-nav-item" routerLink="/home">home</li>
+            <li class="my-nav-item" routerLink="/contact-page">contact</li>
+            <li class="my-nav-item" routerLink="/About-us">About Us</li>
+            <li><button class="item-3" (click)="toggleNav()"></button></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </nav>
+
+
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
   {{ errorMessage }}
 </div>
-
-<div class="card">
-  <div class="card-header">
-    <h3 class="mb-0">{{ project.name }}</h3>
-    <p class="mb-0"><small>{{ project.description }}</small></p>
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Project Title and Description -->
+    <div class="project-header text-center">
+      <h3>{{ project.name }}</h3>
+      <p><small>{{ project.description }}</small></p>
     </div>
-  <div class="card-body">
+    <div  class="additional-images-container">
+
     <div class="row">
-      <div class="col-md-6 text-center">
-        <!-- Main Image -->
+      <div class="col-md-4" >
+    <div class="card image-card">
+      <img [src]="getImageUrl(project.image_url)" (error)="handleImageError($event)"  alt="Project Image">
 
-        <img [src]="getImageUrl(project.image_url)" (error)="handleImageError($event)" class="card-img-top" alt="{{ project.name }}" style="height: 200px; object-fit: cover;">
+    </div>
+    <!-- Main Image Card -->
       </div>
+    </div>
+    </div>
 
-      <!-- Display project images -->
-      <div *ngIf="images.length > 0">
-        <h3>Project Images</h3>
-        <div class="image-gallery">
-          <img *ngFor="let image of images"
-               [src]="image.url"
-               (error)="handleImageError($event)"
-               class="project-image"
-               alt="Project Image">
+    <!--      </div>
+ Additional Images Container -->
+    <div *ngIf="images.length > 0" class="additional-images-container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let image of images">
+
+          <!-- Each image in a card -->
+          <div class="card image-card">
+
+            <img [src]="image.url" (error)="handleImageError($event)" class="card-img" alt="Project Image">
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <!-- Project Information -->
-        <p class="card-text">Description: {{ project.description }}</p>
-      </div>
     </div>
 
 
-      <a class="carousel-control-prev" href="#additionalImagesCarousel" role="button" data-slide="prev">
+
+    <a class="carousel-control-prev" href="#additionalImagesCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
@@ -42,8 +77,36 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+
+<!-- Footer Section -->
+<section class="footer-section">
+  <div class="container3">
+    <div class="box3">
+      <div class="footer">
+        <div class="f2">
+          <p class="design">
+            Design & communications for the new age, one step at a time. See our work.
+          </p>
+          <table>
+            <tr>
+              <td>
+                <img src="assets/images/THD WHITE.svg" alt="" class="contactimg">
+                <h1 class="annonce">BIZERTE office</h1><br>
+                <p>été étage B41- Bizerte 7061
+                  Tel : +21627766880
+                  +21621119677
+                  Mail : thdcommercial@gmail.com <br>
+                  contact@twohdesign.com <br>
+                  www.twohdesign.com <br>
+                  Connect with us Fb.Ln.Tw.Be.</p>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <p class="copyrights">© 2024Qode Interactive, All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-footer">
-    <a style="border-radius: 10px" [routerLink]="['/projects/edit', project.id]" class="btn btn-primary mr-2">Edit</a>
-    <a style="border-radius: 10px" [routerLink]="['/projects/delete', project.id]" class="btn btn-secondary">Delete</a>
-  </div>
+</section>

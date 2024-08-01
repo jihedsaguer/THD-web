@@ -171,6 +171,20 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+.progress {
+  height: 20px;
+  border-radius: 5px;
+  background-color: #e9ecef; /* Light background color */
+}
+
+.progress-bar {
+  height: 100%;
+  line-height: 20px;
+  color: #fff;
+  background-color: #92c020; /* Progress bar color */
+  text-align: center;
+  transition: width 0.6s ease;
+}
 
 abbr[title] {
   -webkit-text-decoration: underline dotted;

@@ -1,89 +1,89 @@
-<div>
-  <!-- Navigation Bar -->
-  <nav class="firstNav">
-    <ul class="firstnavul">
-      <li class="contact firstnavli">contact</li>
-      <li class="facebook firstnavli">Fb.</li>
-      <li class="linkedin firstnavli">Ln.</li>
-      <li class="twitter firstnavli">Tw.</li>
-      <li class="behance firstnavli">Be.</li>
-      <li class="menu firstnavli">menu</li>
-    </ul>
 
-    <div class="menu-icon">
-      <div class="nav-container">
-        <img src="assets/images/Fichier 4.svg" alt="" class="logo svg" (click)="toggleNav()">
-        <nav [class.show-nav]="navVisible" class="my-nav">
-          <ul class="my-nav-list">
-            <li class="my-nav-item" routerLink="/home">home</li>
-            <li class="my-nav-item" routerLink="/contact-page">contact</li>
-            <li class="my-nav-item" routerLink="/About-us">About Us</li>
-            <li><button class="item-3" (click)="toggleNav()"></button></li>
-          </ul>
-        </nav>
-      </div>
+<!-- Navigation Bar -->
+<nav class="firstNav">
+  <ul class="firstnavul">
+    <li class="contact firstnavli">contact</li>
+    <li class="facebook firstnavli">Fb.</li>
+    <li class="linkedin firstnavli">Ln.</li>
+    <li class="twitter firstnavli">Tw.</li>
+    <li class="behance firstnavli">Be.</li>
+    <li class="menu firstnavli">menu</li>
+  </ul>
+
+  <div class="menu-icon">
+    <div class="nav-container">
+      <img src="assets/images/Fichier 4.svg" alt="Menu" class="logo svg" (click)="toggleNav()">
+      <nav [class.show-nav]="navVisible" class="my-nav">
+        <ul class="my-nav-list">
+          <li class="my-nav-item" routerLink="/home">home</li>
+          <li class="my-nav-item" routerLink="/contact-page">contact</li>
+          <li class="my-nav-item" routerLink="/About-us">About Us</li>
+          <li><button class="item-3" (click)="toggleNav()">Close</button></li>
+        </ul>
+      </nav>
     </div>
-    <div class="imgdiv">
-      <img src="assets/images/THD WHITE.svg" class="logo">
-    </div>
-  </nav>
+  </div>
 
-  <!-- Projects Section -->
-  <section class="projects-section">
-    <div class="container mt-4">
-      <h2 class="mb-4">Projects</h2>
-      <div class="row">
-        <!-- Loop through projects and display each one -->
-        <div class="col-md-4 mb-4" *ngFor="let project of projects">
-          <div class="card">
-            <a [routerLink]="['/projectdescription', project.id]">
+  <div class="imgdiv">
+    <img src="assets/images/THD WHITE.svg" alt="Logo" class="logo">
+  </div>
+</nav>
 
-
-              <img [src]="getImageUrl(project.image_url)" (error)="handleImageError($event)" class="card-img-top" alt="{{ project.name }}" style="height: 200px; object-fit: cover;">
-            </a>
-            <div class="card-body">
-              <h5 class="card-title">{{ project.description }}</h5>
-
-              <h5 class="card-title">{{ project.name }}</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h1 class="tableh1">Visuals in market</h1>
-      <p class="tableh1">advertising</p>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <section class="footer-section">
-    <div class="container3">
-      <div class="box3">
-        <div class="footer">
-          <div class="f2">
-            <p class="design">
-              Design & communications for the new age, one step at a time. See our work.
-            </p>
-            <table>
-              <tr>
-                <td>
-                  <img src="assets/images/THD WHITE.svg" alt="" class="contactimg">
-                  <h1 class="annonce">BIZERTE office</h1><br>
-                  <p>été étage B41- Bizerte 7061
-                    Tel : +21627766880
-                    +21621119677
-                    Mail : thdcommercial@gmail.com <br>
-                    contact@twohdesign.com <br>
-                    www.twohdesign.com <br>
-                    Connect with us Fb.Ln.Tw.Be.</p>
-                </td>
-              </tr>
-            </table>
-            <div>
-              <p class="copyrights">© 2024Qode Interactive, All Rights Reserved</p>
-            </div>
+<!-- Projects Section -->
+<section class="projects-section">
+  <div class="container mt-4">
+    <h2 class="mb-4">Projects</h2>
+    <div class="row">
+      <!-- Loop through projects and display each one -->
+      <div class="col-md-4 mb-4" *ngFor="let project of projects">
+        <div class="card">
+          <a [routerLink]="['/projectdescription', project.id]">
+            <img [src]="getImageUrl(project.image_url)" (error)="handleImageError($event)" class="card-img-top" alt="{{ project.name }}" style="height: 200px; object-fit: cover;">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ project.description }}</h5>
+            <h5 class="card-title">{{ project.name }}</h5>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</div>
+    <h1 class="tableh1">Visuals in Market</h1>
+    <p class="tableh1">Advertising</p>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<section class="footer-section">
+  <div class="container3">
+    <div class="box3">
+      <div class="footer">
+        <div class="f2">
+          <p class="design">
+            Design & communications for the new age, one step at a time. See our work.
+          </p>
+          <table>
+            <tr>
+              <td>
+                <img src="assets/images/THD WHITE.svg" alt="Contact" class="contactimg">
+                <h1 class="annonce">BIZERTE Office</h1><br>
+                <p>
+                  été étage B41- Bizerte 7061<br>
+                  Tel: +21627766880<br>
+                  +21621119677<br>
+                  Mail: thdcommercial@gmail.com<br>
+                  contact@twohdesign.com<br>
+                  www.twohdesign.com<br>
+                  Connect with us: Fb. Ln. Tw. Be.
+                </p>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <p class="copyrights">© 2024 Qode Interactive, All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
