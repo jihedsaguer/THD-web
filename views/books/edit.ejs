@@ -8,8 +8,20 @@
     <style>
         body {
             margin-top: 50px;
-            background-color: #8bde91; /* Light green background */
+            background-color: #92c020; /* Light green background */
             font-family: Arial, sans-serif; /* Font style */
+            color: #333; /* Darker text color for better readability */
+        }
+        .container {
+            background-color: #ffffff; /* White background for the form container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for a subtle 3D effect */
+            margin-top: 20px; /* Added margin for better separation */
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #2d572c; /* Darker green for the title */
         }
         .img-thumbnail {
             max-width: 150px;
@@ -43,104 +55,99 @@
             display: inline-block;
             margin-top: 5px;
         }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #2d572c; /* Dark green button background */
+            border-color: #2d572c;
+        }
+        .btn-primary:hover {
+            background-color: #1f3e20; /* Darker green on hover */
+            border-color: #1f3e20;
+        }
+        .btn-danger {
+            background-color: #e74c3c; /* Red button background */
+            border-color: #e74c3c;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            border-color: #c0392b;
+        }
+        .alert-danger {
+            background-color: #f2dede; /* Light red alert background */
+            border-color: #ebccd1;
+            color: #a94442; /* Dark red text color */
+        }
     </style>
 </head>
-<body class="container">
+<body>
+<div class="container">
+    <h1>Edit Project</h1>
+    <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-danger">
+            <ul>
+                <% messages.error.forEach(function(error) { %>
+                    <li><%= error %></li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
 
-<% if (messages.error) { %>
-    <div class="alert alert-danger" role="alert"><%- messages.error %></div>
-<% } %>
+    <form action="/books/update/<%= id %>" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Project Name:</label>
+            <input type="text" id="name" name="name" class="form-control" value="<%= name %>">
+        </div>
 
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="/images/1721125082933.jpeg" alt="Logo">
-    </a>
-    <form class="form-inline">
-        <a href="/auth/logout" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        <a href="/books/layout/" class="btn btn-primary"><i class="fas fa-home"></i> Back Home</a>
-    </form>
-</nav>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" class="form-control"><%= description %></textarea>
+        </div>
 
-<div class="card">
-    <div class="card-header">
-        Edit Project
-    </div>
-    <div class="card-body">
-        <form action="/books/update/<%= id %>" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Name:</label>
-                <input type="text" class="form-control" name="name" value="<%= name %>" autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label>Description:</label>
-                <textarea class="form-control" name="description" rows="3"><%= description %></textarea>
-            </div>
-            <div class="form-group">
-                <label>Current Image:</label>
-                <% if (image_url) { %>
-                    <div class="gallery-item">
-                        <img class="img-thumbnail" src="<%= image_url %>" alt="<%= name %>">
-                        <button type="button" class="btn btn-sm btn-danger removeImageBtn" data-type="main">Remove</button>
-                    </div>
-                <% } else { %>
-                    <p>No image uploaded</p>
-                <% } %>
-            </div>
-            <div class="form-group">
-                <label>New Image:</label>
-                <input type="file" class="form-control-file" name="image" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label>Additional Images:</label>
-                <div id="additionalImages" class="gallery">
-                    <% images.forEach(function(image, index) { %>
-                        <div class="gallery-item">
-                            <img class="img-thumbnail" src="<%= image %>" alt="Additional Image <%= index + 1 %>">
-                            <button type="button" class="btn btn-sm btn-danger removeImageBtn" data-type="additional">Remove</button>
-                        </div>
-                    <% }) %>
-                </div>
-                <input type="file" class="form-control-file" name="images" accept="image/*" multiple>
-            </div>
+        <div class="form-group">
+            <label for="image">Main Image:</label>
+            <% if (image_url) { %>
+                <img src="<%= image_url %>" alt="Main Image" class="img-thumbnail">
+            <% } %>
+            <input type="file" id="image" name="image" class="form-control-file">
             <input type="hidden" name="existing_image_url" value="<%= image_url %>">
-            <input type="hidden" name="existing_images" value='<%= JSON.stringify(images) %>'>
-            <div class="form-group">
-                <input type="submit" class="btn btn-info" value="Update"/>
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="form-group">
+            <label for="images">Additional Images:</label>
+            <% if (images && images.length > 0) { %>
+                <div class="gallery">
+                    <% images.forEach(function(image) { %>
+                        <div class="gallery-item">
+                            <img src="<%= image %>" alt="Additional Image" class="img-thumbnail">
+                            <button type="button" class="removeImageBtn" data-url="<%= image %>">Delete</button>
+                            <input type="hidden" name="existing_images" value="<%= image %>">
+                        </div>
+                    <% }); %>
+                </div>
+            <% } %>
+            <input type="file" id="images" name="images" class="form-control-file" multiple>
+            <input type="hidden" name="delete_image" id="delete_image" value="">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Project</button>
+    </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // Handle removal of main image
-        $('#removeMainImageBtn').click(function() {
-            if (confirm('Are you sure you want to remove this image?')) {
-                $('.gallery-item img').remove();
-                $('[name="existing_image_url"]').val('');
-                $(this).remove();
-            }
-        });
-
-        // Handle removal of additional images
-        $(document).on('click', '.removeImageBtn[data-type="additional"]', function() {
-            if (confirm('Are you sure you want to remove this image?')) {
-                $(this).closest('.gallery-item').remove();
-                updateExistingImagesField();
-            }
-        });
-
-        // Update hidden input field for existing images
-        function updateExistingImagesField() {
-            let remainingImages = [];
-            $('#additionalImages .img-thumbnail').each(function() {
-                remainingImages.push($(this).attr('src'));
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.removeImageBtn');
+        const deleteImageInput = document.getElementById('delete_image');
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const imageUrl = this.getAttribute('data-url');
+                const currentValue = deleteImageInput.value;
+                deleteImageInput.value = currentValue ? currentValue + ',' + imageUrl : imageUrl;
+                this.closest('.gallery-item').remove();
             });
-            $('[name="existing_images"]').val(JSON.stringify(remainingImages));
-        }
+        });
     });
 </script>
-
 </body>
 </html>

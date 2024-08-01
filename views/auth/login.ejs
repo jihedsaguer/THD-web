@@ -7,24 +7,66 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Login - SB Admin</title>
-    <link href="/css/style.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Custom Styles -->
     <style>
         body {
-            background-color: #6dd570; /* Your specified background color */
+            background-color: #92c020; /* Your specified background color */
+        }
+        #view{
+            background-color: #92c020;
         }
         .card {
             margin-top: 100px; /* Adjust as needed for positioning */
+            border: none; /* Remove default border */
+            border-radius: 0; /* Remove border radius */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Add subtle shadow */
         }
         .card-header {
-            background-color: #6dd570; /* Header background color */
+            background-color: #92c020; /* Header background color */
+            border-bottom: none; /* Remove bottom border */
+            padding: 1.25rem 1.5rem; /* Padding for header */
         }
         .card-footer {
             background-color: #ffffff; /* Footer background color */
+            border-top: none; /* Remove top border */
+            padding: 1rem 1.5rem; /* Padding for footer */
         }
         .navbar-brand img {
             height: 50px; /* Adjust logo height */
+        }
+        .form-floating {
+            position: relative; /* Ensure label positioning */
+        }
+        .form-floating input {
+            padding: 0.5rem 1rem; /* Padding for inputs */
+            border-radius: 0; /* Remove input border radius */
+        }
+        .form-floating label {
+            padding: 0 1rem; /* Padding for labels */
+            font-size: 0.875rem; /* Label font size */
+            color: #6c757d; /* Label color */
+            pointer-events: none; /* Disable pointer events for label */
+        }
+        .btn-primary {
+            background-color: #4caf50; /* Button background color */
+            border-color: #4caf50; /* Button border color */
+        }
+        .btn-primary:hover {
+            background-color: #45a049; /* Button hover background color */
+            border-color: #45a049; /* Button hover border color */
+        }
+        .btn-primary:focus, .btn-primary.focus {
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5); /* Button focus shadow */
+        }
+        .btn-block {
+            border-radius: 0; /* Button block border radius */
+        }
+        .small a {
+            color: #6c757d; /* Small text link color */
         }
     </style>
 </head>
@@ -35,8 +77,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header bg-white"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                        <div class="card shadow-lg rounded-lg mt-5">
+                            <div class="card-header "><h3 class="text-center font-weight-light my-4">Login</h3></div>
                             <div class="card-body">
                                 <div class="text-center mb-4">
                                     <a class="navbar-brand" href="#">
@@ -55,7 +97,7 @@
                                         <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
                                         <label for="password">Password</label>
                                     </div>
-                                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                                    <button  id="view"  class="btn btn-primary btn-block" type="submit">Login</button>
                                 </form>
                             </div>
                             <div class="card-footer text-center py-3">

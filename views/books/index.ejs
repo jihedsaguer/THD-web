@@ -54,13 +54,22 @@
         }
         .header-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Position button in top right */
             margin-bottom: 20px;
         }
+
         .header-buttons a {
-            flex: 1;
+            flex: none; /* Remove flex-grow to prevent stretching */
             margin: 0 5px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s; /* Add animation on hover */
         }
+
+        .header-buttons a:hover {
+            transform: translateY(-5px); /* Move up on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+        }
+
     </style>
 </head>
 <body class="container">

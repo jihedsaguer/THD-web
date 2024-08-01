@@ -5,22 +5,31 @@ const Image = require('../models/image'); // Ensure correct path
 const multer = require('multer');
 const path = require('path');
 const { Op } = require('sequelize');
+const bookController = require('../controllers/helloController'); // Adjust the path if necessary
+const projectController = require('../controllers/helloController');
+const {getProjectImages} = require("../controllers/helloController");
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../public/images')); // Adjust the path if needed
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
 const upload = multer({ storage: storage });
+
+router.get('/projects/images', getProjectImages);
+
+
+
+// Route to handle image deletion
+router.delete('/delete-image/:imageId', bookController.deleteImage);
+
+
 // Display all projects
-
-// Example route to render projects using layout.ejs
-
 router.get('/', async (req, res, next) => {
     try {
         const projects = await Project.findAll({
@@ -35,6 +44,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+// Display layout (admin dashboard)
 router.get('/layout', async (req, res, next) => {
     try {
         const projects = await Project.findAll({
@@ -48,6 +58,7 @@ router.get('/layout', async (req, res, next) => {
         res.render('books/layout', { projects: [], messages: req.flash() });
     }
 });
+
 
 // Display project details
 router.get('/details/:id', async (req, res, next) => {
@@ -101,7 +112,7 @@ router.post('/add', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imag
         }
 
         req.flash('success', 'Project successfully added');
-        res.redirect('/books/layout'); // layout if u want to be redirected to admin dashboard //
+        res.redirect('/books/layout'); // layout if u want to be redirected to admin dashboard
     } catch (err) {
         console.error("Error adding project:", err);
         req.flash('error', err.message);
@@ -148,11 +159,14 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
     // Handle multiple image upload
     const newImages = req.files['images'] ? req.files['images'].map(file => '/images/' + file.filename) : [];
 
+    // Collect images to be deleted
+    let imagesToDelete = req.body.delete_image; // Corrected input name
+
     try {
         const project = await Project.findByPk(id);
         if (!project) {
             req.flash('error', 'Project not found');
-            return res.redirect('/books');
+            return res.redirect('/books/edit/' + id);
         }
 
         await project.update({ name, description, image_url });
@@ -163,12 +177,25 @@ router.post('/update/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name
             await Image.bulkCreate(imageRecords);
         }
 
+        // Delete marked images from the Image table
+        if (imagesToDelete && imagesToDelete.length > 0) {
+            const imagesArray = imagesToDelete.split(',');
+            await Image.destroy({
+                where: {
+                    projectId: project.id,
+                    url: {
+                        [Op.in]: imagesArray
+                    }
+                }
+            });
+        }
+
         req.flash('success', 'Project successfully updated');
-        res.redirect('/books/layout');
+        res.redirect('/books/details/' + id);
     } catch (err) {
         console.error("Error updating project:", err);
         req.flash('error', err.message);
-        res.redirect(`/books/edit/${id}`);
+        res.redirect('/books/edit/' + id);
     }
 });
 
@@ -209,8 +236,14 @@ router.get('/search', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 // Add this route to render the layout.ejs template
 router.get('/layout', (req, res) => {
     res.render('books/layout');
 });
+// API endpoint to fetch all projects
+router.get('/api/test', (req, res) => {
+    res.json({ message: 'Connection successful' });
+});
+
 module.exports = router;

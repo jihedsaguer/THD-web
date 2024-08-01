@@ -7,12 +7,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Register - SB Admin</title>
-    <link href="/css/styles.css" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
         body {
-            background-color: #6dd570; /* Light green background */
+            background-color: #fff; /* Light green background */
         }
         .card {
             background-color: #ffffff; /* White card background */
@@ -20,8 +21,11 @@
             border-radius: 10px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
         }
+        #view{
+        background-color: #92c020;
+        }
         .card-header {
-            background-color: #4caf50; /* Light green header background */
+            background-color: #92c020; /* Light green header background */
             color: #ffffff; /* White text */
             border-radius: 10px 10px 0 0;
         }
@@ -72,7 +76,7 @@
                                 <label for="password">Password:</label>
                                 <input class="form-control" type="password" name="password" id="password" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button   id="view" type="submit" class="btn btn-primary btn-block">Register</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">
@@ -86,6 +90,7 @@
     </div>
 </div>
 
+<!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
