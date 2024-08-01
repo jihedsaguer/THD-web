@@ -1,0 +1,321 @@
+.contain{
+  background-image: url("/assets/images/1fcc9f33ff26600d24b5fe3a76964717.jpg");
+  width: 1250px;
+  height: 550px;
+  margin-left: 10%;
+  margin-top: 10%;
+
+}
+img{
+  margin-left: 10%;
+  margin-top: 2%;
+  width: 1050px;
+  height: 500px;
+}
+
+.pub
+{
+  margin-top: 10%;
+  margin-right: 70%;
+}
+.pubtitle
+{
+  color: black;
+  text-align: justify;
+  font-size: 60px;
+  margin-left: 15%;
+  margin-right:30%;
+
+}
+
+.jobalertpub{
+  color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 50px;
+
+}
+.worldimg{
+  margin-top: 20%;
+  z-index: -9999;
+  position: absolute;
+}
+.jobalertpub span{
+  font-size: 20px;
+}
+.card {
+  position: absolute;
+  margin-left: 30%;
+  margin-top: -20%;
+  background-color: white;
+  border: none; max-width: 400px;
+  width: 100%;
+}
+
+.offers {
+  text-align: end;
+  position: relative;
+}
+.offercontain:hover {
+  color: gray;
+}
+
+.offercontain:hover .offertitle1 {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.line {
+  width: 200%;
+  border-top: 1px dashed black;
+  margin-left: 20%;
+  margin-bottom: -5%;
+}
+
+.offertitle {
+  font-size: 24px;
+  margin-top: 30px;
+  color: #333;
+  margin-left: 30px;
+  margin-right: -150px;
+  font-size: 40px;
+}
+.offertitle:hover{
+  color:gray;
+  text-replace: scale(0.5s);
+}
+
+.offertitle1
+{
+  border: none;
+  color: black;
+  margin-top: -50px;
+  font-size: 50px;
+  background-color: rgba(240, 248, 255, 0);
+
+  margin-left: 200%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+}
+.offertitle1:hover {
+  transform: rotate(360deg);
+}
+
+.description
+{
+  text-align: justify;
+  margin-left: 20%;
+  margin-right: -120%;
+  font-size: 20px;
+  font-weight: 300;
+}
+@media (max-width: 390px) {
+  .contain {
+    background-image: url("/assets/images/1fcc9f33ff26600d24b5fe3a76964717.jpg");
+    width: 95%;
+    height: 80%;
+    margin-left: 0;
+    margin-top: 10%;
+  }
+
+  img {
+    margin-left: 10%;
+    margin-top: 2%;
+    width: 300px;
+    height: 150px;
+  }
+
+  .pub {
+    margin-top: 10%;
+    margin-right: 70%;
+  }
+
+  .pubtitle {
+    color: black;
+    text-align: justify;
+    font-size: 20px;
+    margin-left: 10%;
+  }
+
+
+
+  .jobalertpub {
+    color: aliceblue;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 30px !important;
+  }
+
+  .jobalertpub span {
+    font-size: 10px;
+    margin-top: 3px;
+  }
+
+  .card {
+    position: absolute;
+    margin-left: 40%;
+    margin-top: -25%;
+    background-color: white;
+    border-radius: 8px;
+    max-width: 80px;
+    width: 100%;
+  }
+
+  .offers {
+    text-align: end;
+    position: relative;
+  }
+
+  .line {
+    width: 180px;
+    border-top: 1px dashed black;
+    margin-left: 20%;
+    margin-bottom: -5%;
+  }
+
+  .offertitle {
+    font-size: 14px; /* Adjusted font size */
+    margin-top: 20px;
+    color: #333;
+    margin-left: 1%;
+    margin-right: -70%;
+  }
+
+
+  button.offertitle1 {
+    border: none;
+    color: black;
+    margin-top:-180%; /* Adjusted margin */
+    font-size: 20px; /* Adjusted font size */
+    background-color: rgba(240, 248, 255, 0);
+    margin-left: 200%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+  }
+
+  .offertitle1:hover {
+    transform: rotate(360deg);
+    position: inherit;
+  }
+
+  .description {
+    position: relative;
+    margin-left: 10%;
+    margin-right: -70%;
+    font-size: 6px; /* Adjusted font size */
+    font-weight: 300;
+    margin-top: -40%;
+    z-index: 2;
+  }
+  .description h3{
+    font-size: 7px;
+    z-index: 2;
+
+  }
+}
+@media screen and (min-width:390px) and (max-width: 768px) {
+  .contain {
+    background-image: url("/assets/images/1fcc9f33ff26600d24b5fe3a76964717.jpg");
+    width: 600px;
+    height: 300px;
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+
+  img {
+    margin-left: 4%;
+    margin-top: 4%;
+    width: 550px;
+    height: 250px;
+  }
+
+  .pub {
+    margin-top: 8%;
+    margin-right: 50%;
+    margin-right: 10%;
+  }
+
+  .pubtitle {
+    color: black;
+    text-align: justify;
+    font-size: 30px;
+    margin-left: 10%;
+  }
+
+
+
+  .jobalertpub {
+    color: aliceblue;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .jobalertpub span {
+    font-size: 10px;
+  }
+
+  .card {
+    position: absolute;
+    margin-left: 55%;
+    margin-top: -10%;
+    background-color: white;
+    border-radius: 8px;
+    max-width: 80px;
+    width: 100%;
+  }
+
+  .offers {
+    text-align: end;
+    position: relative;
+  }
+
+  .line {
+    width: 280px;
+    border-top: 1px dashed black;
+    margin-left: -40%;
+    margin-bottom: -5%;
+  }
+
+  .offertitle {
+    font-size: 25px; /* Adjusted font size */
+    margin-top: 20px;
+    color: #333;
+    margin-left: -120%;
+    margin-right: -120%;
+  }
+
+
+  .offertitle1 {
+    border: none;
+    color: black;
+    margin-top: -20%; /* Adjusted margin */
+    font-size: 28px; /* Adjusted font size */
+    background-color: rgba(240, 248, 255, 0);
+    margin-left: 280%;
+    cursor: pointer;
+
+  }
+
+  .offertitle1:hover {
+    transform: rotate(360deg);
+    position: inherit;
+  }
+
+  .description {
+    position: relative;
+    margin-left: 10%;
+    margin-right: -70%;
+    font-size: 6px; /* Adjusted font size */
+    font-weight: 300;
+    z-index: 2;
+  }
+  .description h3{
+    font-size: 7px;
+    z-index: 2;
+  }
+}
+

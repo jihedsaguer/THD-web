@@ -1,0 +1,318 @@
+.container3{
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  margin-top: 5%;
+  margin-bottom: -10%;
+
+}
+
+.box3{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 45px;
+}
+
+.footetr{
+  width: 100%;
+}
+
+.f2 {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+
+.f2 ul {
+  width: 25%;
+  min-width: 150px;
+}
+
+.f2 ul  li{
+  margin-bottom: 16px ;
+}
+
+
+.f2 ul li a{
+  color:#737373 ;
+  font-size: 14px;
+}
+
+.f1{
+  margin-bottom: 30px;
+}
+
+
+.f1 a{
+  font-size: 16px;
+  color: #737373;
+}
+
+.f3{
+  margin-top: 30px;
+}
+
+
+.f3 a{
+  font-size: 16px;
+  color: #737373;
+}
+h1{
+  margin-top: 0%;
+  color: aliceblue;
+  margin-left: 20%;
+  font-size: 25px;
+  margin-right:20% ;
+}
+p{
+  margin-top: 0%;
+
+  color: aliceblue;
+  margin-left: 20%;
+  font-size: 25px;
+  margin-right:10% ;
+}
+.contactimg{
+  width: 200px;
+  margin-left: -20%;
+  margin-top: -20%;
+}
+.footerannonce{
+  margin-top: 10%;
+
+  color: aliceblue;
+  margin-left: 5%;
+  font-size: 20px;
+  margin-right:-40% ;
+}
+.copyrights{
+  margin-top: 12%;
+
+  color: aliceblue;
+  margin-left: 50%;
+  font-size: 20px;
+  margin-right:-100% ;
+}
+@media screen and (max-width: 390px) {
+
+  .container3 {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    margin-top: 5%;
+    height: 100%;
+  }
+
+  .box3 {
+    margin-left: -20%;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: -28px;
+  }
+
+  .footetr {
+    width: 100%;
+  }
+
+  .f2 {
+    display: flex;
+    margin-left: -30%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .f2 ul {
+    width: 100%;
+    min-width: 40px;
+    margin-bottom: 10px;
+  }
+
+  .f2 ul li {
+    margin-bottom: 8px;
+  }
+
+  .f2 ul li a {
+    color: #737373;
+    font-size: 6px;
+  }
+
+  .f1 {
+    margin-bottom: 20px;
+  }
+
+  .f1 a {
+    font-size: 12px;
+    color: #737373;
+  }
+
+  .f3 {
+    margin-top: -20px;
+  }
+
+  .f3 a {
+    font-size: 12px;
+    color: #737373;
+  }
+
+  h1 {
+    margin-top: 8px;
+    color: aliceblue;
+    font-size: 8px;
+    margin-left: -20%;
+  }
+
+  .design {
+    text-align: center;
+    margin-top: 10px;
+    color: aliceblue;
+    margin-left: 10%;
+    margin-right: -20%;
+    font-size: 8px;
+  }
+
+  .annonce {
+    margin-left: 20%;
+    margin-right: 40%;
+    margin-top:-20%;
+    color: aliceblue;
+    font-size: 8px;
+  }
+
+  p {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: -20px;
+    color: aliceblue;
+    font-size: 8px;
+  }
+
+  .footerannonce {
+    margin-top: 20px;
+    color: aliceblue;
+    font-size: 8px;
+  }
+  .contactimg{
+    width: 100px;
+    margin-left: -70%;
+    margin-top: -70%;
+  }
+  .copyrights {
+    margin-left: 10%;
+    margin-top: -30%;
+    color: aliceblue;
+    font-size: 8px;
+    margin-bottom: 10%;
+  }
+}
+@media screen and (min-width:390px) and (max-width: 768px) {
+
+  .container3 {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    margin-top: 5%;
+    height: 100%;
+  }
+
+  .box3 {
+    margin-left: -20%;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: -28px;
+  }
+
+  .footetr {
+    width: 100%;
+  }
+
+  .f2 {
+    display: flex;
+    margin-left: -30%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .f2 ul {
+    width: 100%;
+    min-width: 40px;
+    margin-bottom: 10px;
+  }
+
+  .f2 ul li {
+    margin-bottom: 8px;
+  }
+
+  .f2 ul li a {
+    color: #737373;
+    font-size: 6px;
+  }
+
+  .f1 {
+    margin-bottom: 20px;
+  }
+
+  .f1 a {
+    font-size: 13px;
+    color: #737373;
+  }
+
+  .f3 {
+    margin-top: -20px;
+  }
+
+  .f3 a {
+    font-size: 13px;
+    color: #737373;
+  }
+
+  h1 {
+    margin-top: 8px;
+    color: aliceblue;
+    font-size: 13px;
+    margin-left: 20%;
+  }
+
+  .design {
+    text-align: center;
+    margin-top: 10px;
+    color: aliceblue;
+    margin-left: 30%;
+    margin-right: -20%;
+    font-size: 13px;
+  }
+
+  .annonce {
+    margin-left: 40%;
+    margin-right: 20%;
+    margin-top: 0px;
+    color: aliceblue;
+    font-size: 13px;
+  }
+
+  p {
+    margin-left: 40%;
+    margin-right: -50%;
+    margin-top: -20px;
+    color: aliceblue;
+    font-size: 15px;
+  }
+
+  .footerannonce {
+    margin-top: 20px;
+    color: aliceblue;
+    font-size: 13px;
+  }
+  .contactimg{
+    width: 200px;
+    margin-left: -30%;
+    margin-top: -50%;
+  }
+  .copyrights {
+    margin-top: -14%;
+    margin-left: 100%;
+    color: aliceblue;
+    font-size: 13px;
+    margin-bottom: 10%;
+  }
+}

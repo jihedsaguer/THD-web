@@ -1,0 +1,292 @@
+.container {
+  margin-top: 35%;
+  background-image: url("/assets/images/side-area-bckgr.jpg");
+  padding: 10px;
+  width:100% !important;
+
+}
+
+.galery {
+  width: 100% !important;
+  margin-top: 10%;
+  margin-bottom: 200px;
+}
+
+table td {
+  position: relative;
+  padding: 10px;
+}
+
+img {
+
+  cursor: pointer;
+  width: 300px;
+  height: 300px;
+  margin-left:0%;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease-out;
+}
+
+.infos {}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(50%, 0, 0);
+    transform: translate3d(50%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(50%, 0, 0);
+    transform: translate3d(50%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: none;
+  position: absolute;
+  background-color: aliceblue;
+  color: black;
+  width: 250px;
+  height: 220px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: -70%;
+  margin-left: 10%;
+  z-index: 2;
+}
+
+table td:hover .fadeInRight {
+  display: block;
+}
+
+.fadeInRight h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.fadeInRight p {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: 100%;
+    margin-left: 0%;
+    margin-top: 100%;
+    background-color: black;
+    padding: 20px;
+  }
+
+  .galery {
+    margin-left: 5%;
+    width: 80%;
+    margin-top: 10%;
+    margin-bottom: 10px;
+  }
+
+  table td {
+    padding: 2px;
+    margin-top: 0%;
+    width: 80%;
+  }
+
+  img {
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    margin-left: -15%;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+  }
+
+
+  .infos {}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: none;
+  position: absolute;
+  background-color: aliceblue;
+  color: black;
+  width: 70px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: -70%;
+  margin-left: -60%;
+  z-index: 2;
+}
+
+table td:hover .fadeInRight {
+  display: block;
+}
+
+.fadeInRight h1 {
+  text-align: center;
+  font-size: 5px;
+}
+
+.fadeInRight p {
+  margin-top: -50%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 5px;
+}
+
+}
+@media screen and (min-width:390px) and (max-width: 768px) {
+  .container {
+    margin-top: 60%;
+    background-color: black;
+    padding: 20px;
+  }
+
+  .galery {
+    width: 80%;
+    margin-top: 10%;
+    margin-bottom: 10px;
+  }
+
+  table td {
+    padding: 4px;
+    margin-top: 0%;
+  }
+
+  img {
+    cursor: pointer;
+    width: 160px;
+    height: 165px;
+    margin-left: 0%;
+    position: relative;
+    transition: transform 0.3s ease-out;
+  }
+
+
+  .infos {}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: none;
+  position: absolute;
+  background-color: aliceblue;
+  color: black;
+  width: 70px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: -70%;
+  margin-left: -60%;
+  z-index: 2;
+}
+
+table td:hover .fadeInRight {
+  display: block;
+}
+
+.fadeInRight h1 {
+  text-align: center;
+  font-size: 5px;
+}
+
+.fadeInRight p {
+  margin-top: -50%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 5px;
+}
+
+}
+
+

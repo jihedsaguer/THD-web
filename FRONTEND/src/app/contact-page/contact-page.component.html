@@ -1,0 +1,92 @@
+<div>
+  <nav class="firstNav">
+    <ul class="firstnavul">
+      <li class="contact"  class="firstnavli">contact</li>
+      <li class="facebook" class="firstnavli">Fb.</li>
+      <li class="linkedin" class="firstnavli">Ln.</li>
+      <li class="twitter" class="firstnavli">Tw.</li>
+      <li class="behance" class="firstnavli">Be.</li>
+      <li class="menu" class="firstnavli">menu</li>
+    </ul>
+
+    <div class="menu-icon">
+      <div class="nav-container">
+        <img src="assets/images/Fichier 4.svg" alt="" class="logosvg" (click)="toggleNav()">
+        <nav [class.show-nav]="navVisible" class="my-nav">
+          <ul class="my-nav-list">
+            <li class="my-nav-item" routerLink="/home">home</li>
+            <li class="my-nav-item" routerLink="/project">projects</li>
+            <li class="my-nav-item" routerLink="/About-us">About Us </li>
+            <li><button class="item-3"  (click)="toggleNav()"></button></li>
+            <li><img src="assets/images/THD WHITE.svg" alt=""></li>
+
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+    <img src="assets/images/THD WHITE.svg" alt="" class="logo">
+
+    <div class="contacttitle">
+      <p>2013 . ____________________this page is for</p>
+      <br>
+      <h1 class="title">Contact Us</h1>
+    </div>
+    <div class="infos">
+      <p>01. _____________________write to us</p>
+      <h1>Feel free to ask us <br>
+        anything </h1><br>
+      <h3>Bizerte BebMater <br><br>
+        thd@commercial.com </h3><br><br>
+      <h2>Let's connect Fb. Ln. Tw. Be.</h2>
+    </div>
+  </nav>
+  <form [formGroup]="emailForm" (ngSubmit)="sendEmail()" class="form">
+    <input formControlName="name" type="text" placeholder="Your full Name" class="input">
+    <input formControlName="email" type="email" placeholder="Your Email" class="input1">
+    <br>
+    <input formControlName="subject" type="text" placeholder="Subject" class="input2">
+    <br>
+    <textarea formControlName="message" placeholder="Drop Us a few Lines here ..." class="input3"></textarea>
+    <br>
+    <button type="submit" class="btn">Send Us a message</button>
+  </form>
+
+
+</div>
+<div class="map-container">
+  <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.085529643412!2d9.862846575730849!3d37.269398872117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e31fb8b2e27427%3A0x2349055907d319c7!2sTwo%20H%20Design!5e0!3m2!1sen!2stn!4v1721030188762!5m2!1sen!2stn"
+  width="600"
+  height="450"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+<section class="container3">
+  <div class="box3">
+    <div class="footetr">
+        <p class="design">
+          Design & communications for the new age, one step at a time. See our work.
+        </p>
+        <table>
+
+          <td>
+            <img src="assets/images/THD WHITE.svg" alt="" class="contactimg">
+            <h1 class="annonce">BIZERTE office</h1><br>
+            <p>été étage B41- Bizerte 7061
+              Tel : +21627766880
+                      +21621119677
+              Mail : thdcommercial@gmail.com <br>
+                       contact@twohdesign.com <br>
+                       www.twohdesign.com</p>
+                       <br>
+                       <br>
+                       Copyright © 2024. All rights reserved.
+          </td>
+        </table>
+    </div>
+  </div>
+</section>
